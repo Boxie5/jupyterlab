@@ -428,7 +428,7 @@ function addCommands(
     label: 'Cut'
   });
 
-  commands.addCommand(CommandIDs.download, {
+  /* commands.addCommand(CommandIDs.download, {
     execute: () => {
       const widget = tracker.currentWidget;
 
@@ -438,7 +438,7 @@ function addCommands(
     },
     iconClass: 'jp-MaterialIcon jp-DownloadIcon',
     label: 'Download'
-  });
+  }); */
 
   commands.addCommand(CommandIDs.duplicate, {
     execute: () => {
@@ -601,7 +601,7 @@ function addCommands(
     mnemonic: 0
   });
 
-  commands.addCommand(CommandIDs.copyDownloadLink, {
+  /* commands.addCommand(CommandIDs.copyDownloadLink, {
     execute: () => {
       const widget = tracker.currentWidget;
       if (!widget) {
@@ -617,7 +617,7 @@ function addCommands(
     iconClass: 'jp-MaterialIcon jp-CopyIcon',
     label: 'Copy Download Link',
     mnemonic: 0
-  });
+  }); */
 
   commands.addCommand(CommandIDs.paste, {
     execute: () => {
@@ -941,32 +941,32 @@ function addCommands(
     selector: selectorNotDir,
     rank: 8
   });
-  app.contextMenu.addItem({
+  /* app.contextMenu.addItem({
     command: CommandIDs.download,
     selector: selectorNotDir,
     rank: 9
-  });
+  }); */
   app.contextMenu.addItem({
     command: CommandIDs.shutdown,
     selector: selectorNotDir,
-    rank: 10
+    rank: 9
   });
 
   app.contextMenu.addItem({
     command: CommandIDs.share,
     selector: selectorItem,
-    rank: 11
+    rank: 10
   });
   app.contextMenu.addItem({
     command: CommandIDs.copyPath,
     selector: selectorItem,
-    rank: 12
+    rank: 11
   });
-  app.contextMenu.addItem({
+  /* app.contextMenu.addItem({
     command: CommandIDs.copyDownloadLink,
     selector: selectorNotDir,
     rank: 13
-  });
+  }); */
 }
 
 /**
