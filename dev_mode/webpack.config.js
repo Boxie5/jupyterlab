@@ -11,6 +11,7 @@ var webpack = require('webpack');
 var DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
+var TerserPlugin = require('terser-webpack-plugin');
 
 var Build = require('@jupyterlab/buildutils').Build;
 var WPPlugin = require('@jupyterlab/buildutils').WPPlugin;
@@ -146,7 +147,8 @@ if (process.argv.includes('--analyze')) {
 
 module.exports = [
   {
-    mode: 'development',
+    // mode: 'development',
+    mode: 'production',
     entry: {
       main: ['whatwg-fetch', plib.resolve(buildDir, 'index.out.js')]
     },
@@ -160,7 +162,24 @@ module.exports = [
     optimization: {
       splitChunks: {
         chunks: 'all'
-      }
+      },
+      minimizer: [
+        new TerserPlugin({
+          parallel: true,
+          sourceMap: true,
+          terserOptions: {
+            compress: false,
+            ecma: 6,
+            mangle: true,
+            output: {
+              beautify: false,
+              comments: false
+            },
+            safari10: true
+          },
+          cache: process.platform !== 'win32'
+        })
+      ]
     },
     module: {
       rules: [
